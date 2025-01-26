@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dice_roll/gradient_container.dart';
 
 // runApp(); -> main function
 void main() {
@@ -6,32 +7,8 @@ void main() {
     MaterialApp(
       home: Scaffold(
         // backgroundColor: Color(0xFF673AB7),
-        body: GradientContainer(),
+        body: const GradientContainer(),
       ),
     ),
   );
-}
-
-class GradientContainer extends StatelessWidget {
-  @override
-  Widget build(context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            const Color.fromARGB(255, 47, 4, 122),
-            const Color.fromARGB(255, 80, 2, 175)
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Center(
-        child: Text(
-          'Hello World!',
-          style: TextStyle(color: Colors.white, fontSize: 28),
-        ),
-      ),
-    );
-  }
 }
