@@ -13,9 +13,6 @@ class BackgroundContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity, // Ensures it takes full screen width
-      height: double.infinity, // Ensures it takes full screen height
-      padding: const EdgeInsets.only(top: 20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [color1, color2],
