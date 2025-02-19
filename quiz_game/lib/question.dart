@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_game/answer_button.dart';
+import 'package:quiz_game/data/questions.dart';
 
 class QuestionScreen extends StatefulWidget {
+  const QuestionScreen({super.key});
+
   @override
   State<QuestionScreen> createState() {
     return _QuestionScreenState();
@@ -9,26 +12,43 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
+
+  var currentQuestionIndex = 0;
+
+  void answerQuestion() {
+    setState(() {
+      currentQuestionIndex = currentQuestionIndex + 1;
+    });
+  }
+
+
   @override
   Widget build(context) {
+    final currentQuestion = questions[0];
+
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'The question goes here',
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.white,
+      child: Container(
+        margin: EdgeInsets.all(35),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              textAlign: TextAlign.center,
+              currentQuestion.text,
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+              ),
             ),
-          ),
-          SizedBox(height: 20),
-          AnswerButton(answerText: 'Answer 1', onTap: () {}),
-          AnswerButton(answerText: 'Answer 2', onTap: () {}),
-          AnswerButton(answerText: 'Answer 3', onTap: () {}),
-          AnswerButton(answerText: 'Answer 4', onTap: () {}),
-        ],
+            SizedBox(height: 20),
+            ...currentQuestion.getsuffledAnswers().map((item) {
+              //to get individual answer here
+              return AnswerButton(answerText: item, onTap: answerQuestion);
+            })
+          ],
+        ),
       ),
     );
   }
